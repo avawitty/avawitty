@@ -1,128 +1,84 @@
-# Mimi — Interface Design System
+# Mimi — Interface Design
 
 ## Design philosophy
 
-Mimi's interface should feel like **looking through iridescent glass at your own thoughts** — luminous, honest, and unhurried. It is not a dashboard. It is a studio.
+Mimi should feel like a **quiet studio** — not a social app, not a game, not a dashboard. Unhurried. Glass surfaces. Typography that respects the writing.
 
-## Recommended interface concept: **Glass Evidence**
-
-### Visual language
+## Visual language
 
 | Element | Specification |
 |---------|--------------|
-| **Background** | White → `#F8F8FF` vertical gradient with animated iridescent radial shimmer |
-| **Surfaces** | Glass panels: `rgba(255,255,255,0.15)` + `blur(30px)` + white border at 60% opacity |
-| **Primary accent** | Iridescent gradient: `#AEE4FF` → `#F6C8FF` |
-| **Typography — Display** | Bodoni Moda (serif) — titles, quotes, echo text |
-| **Typography — Labels** | IBM Plex Mono — uppercase metadata, boundaries, timestamps |
-| **Typography — Body** | Inter — reflections, descriptions, UI copy |
-| **Shape** | Heavy `rounded-3xl` panels, `rounded-full` buttons |
-| **Motion** | Page transitions via AnimatePresence; subtle pulse on loading; hover scale 1.02–1.05 |
+| Background | White → `#F8F8FF` gradient with soft iridescent shimmer |
+| Surfaces | Glass panels: `rgba(255,255,255,0.15)` + `blur(30px)` |
+| Accent | Iridescent gradient: `#AEE4FF` → `#F6C8FF` |
+| Display type | Bodoni Moda — titles, edition names, evidence headings |
+| Labels | IBM Plex Mono — type badges, timestamps, boundaries |
+| Body | Inter — evidence text, descriptions, reflections |
 
-### Screen architecture
+## Screen map
 
 ```
-┌─────────────────────────────────────────┐
-│  START                                  │
-│  "Mimi" title + tagline                 │
-│  [Create an Echo]  [View Evidence (n)]    │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  INPUT                                  │
-│  Thought textarea (glass)               │
-│  4 lens cards (2×2 grid)               │
-│  [Generate Echo]                        │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  LOADING                                │
-│  Animated cube + cycling status text    │
-│  User's thought displayed as quote      │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  PREVIEW                                │
-│  16:9 echo artwork (procedural)         │
-│  Animated waveform                      │
-│  Thought quote (Bodoni italic)          │
-│  [Remix Lens]  [Receive Reflection]     │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  REFLECTION                             │
-│  "What I notice" (observation)          │
-│  Inference (italic, muted)              │
-│  ┌─ AI BOUNDARIES ─────────────────┐   │
-│  │ · I do not know who you are...  │   │
-│  │ · This is pattern-matching...   │   │
-│  └─────────────────────────────────┘   │
-│  [Create Another]  [Save to Evidence]   │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│  EVIDENCE                               │
-│  Stats: echo count, lenses used         │
-│  Scrollable ledger of saved echoes      │
-│  Each card: thumbnail + quote + meta    │
-│  [Create New Echo]                      │
-└─────────────────────────────────────────┘
+Home
+├── Add evidence → Capture
+├── Ledger (n) → Ledger
+├── Curate edition → Curate
+└── Recent items → Detail
+
+Capture
+└── Save → Detail
+
+Ledger
+├── Item tap → Detail
+├── Add → Capture
+└── Curate → Curate
+
+Detail
+├── Receive reflection (optional)
+└── Delete
+
+Curate
+└── Create edition → Edition
+
+Edition
+├── Export markdown
+└── Done → Home
 ```
 
-### Key design decisions
+## Key UX decisions
 
-#### 1. Reflection is a separate screen (not inline)
+### 1. "Add evidence" not "Create" or "Generate"
 
-Most apps bury AI commentary in small text. Mimi gives reflection its own moment — with an explicit **AI Boundaries** section. This is the ethical differentiator made visible.
+The primary action preserves your work. It doesn't manufacture anything. Language matters.
 
-#### 2. Evidence replaces Profile
+### 2. Ledger replaces Profile
 
-No avatar upload. No bio field. No "about me." Your evidence ledger IS your identity page. Stats show echo count and lenses used — factual, not narrative.
+No avatar. No bio. Your ledger count and recent pieces *are* your identity page.
 
-#### 3. Procedural echoes (MVP) → AI echoes (v2)
+### 3. Reflection is opt-in per piece
 
-The MVP generates unique canvas art from thought hash + lens palette. This is intentional: the echo is **evidence of your input**, not a random stock image. v2 can add AI image generation behind the same lens system.
+Not forced after every capture. You choose when you want a mirror.
 
-#### 4. Glass over chrome
+### 4. Curate is manual
 
-No navigation bars, no sidebars, no settings panels in MVP. The interface is a linear flow with back buttons. This matches the cinematic quality of your OmniLoop prototype.
+Checkbox selection, edition title, export. No algorithm suggesting what to include.
 
-### Color tokens
+### 5. Type pills, not style lenses
 
-```css
---mimi-cyan: #AEE4FF;
---mimi-pink: #F6C8FF;
---mimi-bg: #F8F8FF;
---mimi-text: #1F2937;
---mimi-muted: #6B7280;
---mimi-subtle: #9CA3AF;
-```
+Four evidence types (fragment, poem, essay, note) — functional, not aesthetic. The aesthetic is Mimi's glass UI, not a filter on your content.
 
-### Lens palettes
+## Mobile
 
-| Lens | Mood | Primary colors |
-|------|------|---------------|
-| Iridescent | luminous and open | `#AEE4FF`, `#F6C8FF`, `#FFFFFF` |
-| VHS Noir | grainy and introspective | `#1F2937`, `#6B7280`, `#9CA3AF` |
-| Anime Diner | warm and nostalgic | `#FF6B9D`, `#FFC371`, `#FF8FAB` |
-| Space Western | vast and solitary | `#4A5568`, `#9B8B7E`, `#C4A882` |
+- Single column layout throughout
+- Touch targets ≥ 44px
+- Type pills wrap on narrow screens
+- Evidence body uses comfortable line-height (1.6–1.7)
 
-### Mobile considerations
+## What we removed from v1
 
-- Lens grid: 2×2 on mobile, 4×1 on desktop
-- Echo preview: full-width, 16:9 aspect ratio
-- Buttons: stack vertically on small screens
-- Touch targets: minimum 44px (iOS HIG aligned)
-- `viewport` meta: `maximum-scale=1` to prevent zoom jank during transitions
+These were OmniLoop artifacts, not Mimi:
 
-### What NOT to do
-
-- No dark mode in MVP (the iridescent aesthetic depends on light backgrounds)
-- No infinite scroll in evidence view (editorial, not feed)
-- No social features in MVP (evidence is personal first)
-- No AI-generated user bios anywhere in the UI
+- Style lenses (Iridescent, VHS Noir, etc.)
+- Procedural echo generation
+- Waveform visualization
+- Loading/generation interstitial
+- "Generate Scene" as primary action

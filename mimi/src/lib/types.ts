@@ -1,23 +1,14 @@
-export type StyleLens =
-  | 'Iridescent'
-  | 'VHS Noir'
-  | 'Anime Diner'
-  | 'Space Western'
+export type EvidenceKind = 'fragment' | 'poem' | 'essay' | 'note'
 
-export type StudioScreen =
-  | 'start'
-  | 'input'
-  | 'loading'
-  | 'preview'
-  | 'reflection'
-  | 'evidence'
+export type AppScreen = 'home' | 'capture' | 'ledger' | 'detail' | 'curate' | 'edition'
 
-export interface Echo {
+export interface Evidence {
   id: string
-  thought: string
-  style: StyleLens
-  imageDataUrl: string
+  kind: EvidenceKind
+  title?: string
+  body: string
   createdAt: string
+  updatedAt: string
   reflection?: Reflection
 }
 
@@ -28,9 +19,15 @@ export interface Reflection {
   createdAt: string
 }
 
-export interface EvidenceStats {
-  totalEchoes: number
-  stylesUsed: StyleLens[]
-  firstEcho?: string
-  latestEcho?: string
+export interface Edition {
+  id: string
+  title: string
+  evidenceIds: string[]
+  createdAt: string
+}
+
+export interface LedgerStats {
+  total: number
+  byKind: Record<EvidenceKind, number>
+  latestAt?: string
 }

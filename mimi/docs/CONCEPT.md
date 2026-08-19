@@ -2,81 +2,66 @@
 
 ## One sentence
 
-**Mimi is a personal creative studio where your identity is built from evidence — the echoes you create — not from anything AI generates about you.**
+**Mimi is a personal creative ledger where your identity is the evidence of what you made — not what AI generated about you.**
 
 ## The problem
 
-Most AI creative tools do two things wrong:
+Creative work gets scattered — Notes apps, Google Docs, camera rolls, voice memos. There's no single place that treats your output as *evidence of who you are*, and most tools either:
 
-1. **They generate identity** — AI writes your bio, curates your taste, pretends to know you
-2. **They optimize for output** — infinite feeds, disposable content, no editorial act
+1. Generate a persona for you (AI bio, taste profile)
+2. Bury your work in feeds and folders with no editorial meaning
 
 ## The Mimi answer
 
-Mimi inverts both:
-
 | Instead of… | Mimi does… |
 |-------------|-----------|
-| AI-generated persona | Evidence ledger of your creations |
-| Infinite scroll | Curated zine editions (future) |
-| "I understand you" | "I notice patterns — here are my limits" |
-| Stock AI art | Procedural echoes derived from your exact words |
+| AI-generated identity | Evidence ledger of your real work |
+| Infinite folders | One chronological ledger |
+| Algorithmic curation | Manual edition assembly |
+| Cloud dependency | Local-first, private by default |
 
 ## Core loop
 
 ```
-Thought → Lens → Echo → Reflection → Evidence
+Add evidence → Ledger → Reflect (optional) → Curate → Export edition
 ```
 
-Each step has a philosophical anchor from your existing work:
+### Evidence types
 
-- **Thought** — You are the author. Always.
-- **Lens** — Style is interpretation, not truth. Four lenses from OmniLoop.
-- **Echo** — Visual evidence procedurally derived from input. Unique per thought.
-- **Reflection** — AI mirrors with stated boundaries (from `you` repo ethics).
-- **Evidence** — Your profile IS your ledger. No generated bio.
+| Type | What it's for |
+|------|--------------|
+| **Fragment** | A line, a moment, something half-formed |
+| **Poem** | Verse and rhythm |
+| **Essay** | Longer form — argument, story, thread |
+| **Note** | Observations, reminders, private thoughts |
 
-## Target user
+### Reflection (optional)
 
-**Primary:** You (Ava) — a builder who values honest AI partnership and creative expression.
+When you want it, Mimi offers a bounded reflection on a specific piece — with explicit AI boundaries. This is pattern-matching on your text, not knowledge of your life. You can ignore it entirely.
 
-**Secondary:** Creators who want a personal meaning system, not a content factory.
+### Editions
 
-## Differentiation
+Select evidence manually. Name an edition. Export as markdown. Publish to mimi-zine when ready. Editorial, not algorithmic.
 
-```
-                    Generic AI art apps
-                           │
-                           │  (generate identity)
-                           ▼
-    Personal blogs ◄──────────────► AI persona builders
-                           │
-                           │  (reveal evidence)
-                           ▼
-                         MIMI
-```
+## What Mimi is not
 
-## Connection to your ecosystem
+**Mimi is not OmniLoop.** Interactive art (thought → style lens → generated visual echo) is a different product. Mimi collects what you actually made. OmniLoop could be a sibling app that shares visual language but has a different core loop.
 
-| Repo | Role in Mimi ecosystem |
-|------|----------------------|
-| `mimi` (this) | Core studio app |
-| `mimi-zine` | Publishing destination for curated evidence editions |
-| `omnichannel` | Future platform monorepo (studio + zine + taste) |
-| `taste` | Curation engine for edition assembly |
-| `you` | Philosophy docs and reflection prompt templates |
-| `inbucube` | Feature development orchestration via DesignSpec |
-| `Interactiveartexperience` | Visual design source (ported into Mimi) |
+## Design principles
 
-## Success metrics (MVP)
-
-- A user can create an echo in under 60 seconds
-- Every echo has provenance (thought, lens, timestamp, reflection)
-- Reflection always includes AI boundaries
-- Evidence profile contains zero generated biographical text
+1. **Local-first** — Your words stay on your device
+2. **Evidence over output** — Preserve, don't manufacture
+3. **Editorial over algorithmic** — You choose what matters
+4. **Honest AI** — Reflections state their limits, always
+5. **Built for one** — Personal scale first, platform never required
 
 ## North star
 
 > "Mimi doesn't generate identity — it reveals evidence."
 
-This line from your `you/thoughts.md` is the product thesis. Everything else is implementation.
+## Success metrics
+
+- You can add a piece of evidence in under 30 seconds
+- The ledger feels like *yours*, not a generic journal app
+- Exporting an edition produces something you'd actually publish
+- Zero external dependencies required to use the full loop
